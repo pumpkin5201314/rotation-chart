@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>轮播图一</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{
+			padding: 0px;
+			margin: 0px;
+			list-style: none;
+			text-decoration: none;
+		}
+	 .show-box{
+	 	overflow: hidden;
+	 	position: relative;
+	 	width:300px;
+	 	height:240px;
+	 	border: 1px solid black; 
+	 }
+	 a{position: absolute;
+	 	display: inline-block;
+	 	width:50px;
+	 	height:50px;
+	 	/*border: 1px solid black; */
+
+	 }
+	 .prev{
+	 	left:-51px;
+	 	top:95px;
+	 	background-image: url(./img/prev.png);
+	 	background-repeat: no-repeat;
+	 	background-size: 100% ;
+	 	background-position: right;
+	 }
+	  .next{
+	 	left:301px;
+	 	top:95px;
+	 	background-image: url(./img/next.png);
+	 	background-repeat: no-repeat;
+	 	background-size: 100% ;
+	 	background-position: left;
+	 }
+	 img{
+	 	width:300px;
+	 	 
+	 }
+	 ul{position:absolute;
+	 	left:0px;
+	 	top:0px;
+	 	width:1200px;
+	 	height:240px;
+	 }
+	 li{
+	 	float: left;
+	 	width:300px;
+	 	height:240px;
+	  	box-sizing :border-box;
+	 	border: 1px solid black; 
+
+	 }
+	 .rotation-chart{
+
+	 	position: relative;
+	 	width:300px;
+	 	height:240px;
+	 	margin: 100px auto;
+
+	 }
+	</style>
+</head>
+</body>	 
+		<div class="rotation-chart">
+
+			<div class="show-box">
+
+				<ul>
+					<li><img src="./img/1.jpg" alt=""></li>
+					<li ><img src="./img/2.jpg" alt=""></li>
+					<li> <img src="./img/3.jpg" alt=""></li>
+					<li><img src="./img/4.jpg" alt=""></li>
+				</ul>
+			
+		    </div>
+		<a href="javascript:void(0)" class="prev"></a>
+		<a href="javascript:void(0)" class="next"></a>
+		</div>
+		<script>
+			var ul=document.getElementsByTagName('ul')[0];
+			var prev=document.getElementsByClassName('prev')[0];
+			var next=document.getElementsByClassName('next')[0];
+			// console.log(first)
+			var timer1;
+			 
+			var nowleft=0;
+			 var first;
+			   timer1=setInterval(function(){
+			   first=ul.children[0];
+				
+				ul.style.left=(parseInt(ul.offsetLeft)-300)+'px';
+  				ul.appendChild(first);
+  				ul.style.left=0;
+			},2000);
+
+			    // prev.onclick=functon(){
+
+			    // }
+			    next.onclick=function(){
+			    	 first=ul.children[0];
+			    	 clearInterval(timer1);
+			    	 ul.style.left=(parseInt(ul.offsetLeft)-300)+'px';
+  				    ul.appendChild(first);
+  				    ul.style.left=0;
+ 				}
+ 				next.onmouseleave=function(){
+
+ 					timer1=setInterval(function(){
+				     first=ul.children[0];
+					
+					ul.style.left=(parseInt(ul.offsetLeft)-300)+'px';
+	  				ul.appendChild(first);
+	  				ul.style.left=0;
+			},2000);
+
+ 				}
+ 				  prev.onclick=function(){
+			    	 last=ul.children[3];
+			    	  first=ul.children[0];
+			    	 clearInterval(timer1);
+			    	 left=ul.offsetLeft;
+			    	 ul.style.left=(parseInt(ul.offsetLeft)+300)+'px';
+  				    ul.insertBefore(last,first);
+  				    ul.style.left=left;
+ 				}
+ 				prev.onmouseleave=function(){
+	                timer1=setInterval(function(){
+				     first=ul.children[0];
+					
+					ul.style.left=(parseInt(ul.offsetLeft)-300)+'px';
+	  				ul.appendChild(first);
+	  				ul.style.left=0;
+			},2000);
+
+
+ 				}
+		</script>
+</body>
+</html>
